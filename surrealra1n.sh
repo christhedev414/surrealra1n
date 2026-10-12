@@ -1092,9 +1092,9 @@ KEY_FILE="keys/$IDENTIFIER.txt"
 
 # BB update determine check
 
-if [[ $IDENTIFIER == iPhone* || $IDENTIFIER == iPad4,2 || $IDENTIFIER == iPad4,3 || $IDENTIFIER == iPad4,5 || $IDENTIFIER == iPad4,6 || $IDENTIFIER == iPad4,8 || $IDENTIFIER == iPad4,9 || $IDENTIFIER == iPad5,2 || $IDENTIFIER == iPad5,4 ]]; then
+if [[ $IDENTIFIER == iPhone* || $IDENTIFIER == iPad4,2 || $IDENTIFIER == iPad4,3 || $IDENTIFIER == iPad4,5 || $IDENTIFIER == iPad4,6 || $IDENTIFIER == iPad4,8 || $IDENTIFIER == iPad4,9 || $IDENTIFIER == iPad5,2 || $IDENTIFIER == iPad5,4 || $IDENTIFIER == iPad7,4 || $IDENTIFIER == iPad7,6 || $IDENTIFIER == iPad7,12 ]]; then
     updatebb_flag="--latest-baseband"
-elif [[ $IDENTIFIER == iPod* || $IDENTIFIER == iPad4,1 || $IDENTIFIER == iPad4,4 || $IDENTIFIER == iPad4,7 || $IDENTIFIER == iPad5,1 || $IDENTIFIER == iPad5,3 ]]; then
+elif [[ $IDENTIFIER == iPod* || $IDENTIFIER == iPad4,1 || $IDENTIFIER == iPad4,4 || $IDENTIFIER == iPad4,7 || $IDENTIFIER == iPad5,1 || $IDENTIFIER == iPad5,3 || $IDENTIFIER == iPad7,1 || $IDENTIFIER == iPad7,2 || $IDENTIFIER == iPad7,3 || $IDENTIFIER == iPad7,5 || $IDENTIFIER == iPad7,11 ]]; then
     updatebb_flag="--no-baseband"
 fi
 
@@ -1133,6 +1133,32 @@ elif [[ $IDENTIFIER == iPad5,1 || $IDENTIFIER == iPad5,2 ]]; then
 elif [[ $IDENTIFIER == iPad5,3 || $IDENTIFIER == iPad5,4 ]]; then
     REFER="ipad5b"
     REFER2="ipad5b"
+elif [[ $IDENTIFIER == iPhone9,1 || $IDENTIFIER == iPhone9,2 || $IDENTIFIER == iPhone9,3 || $IDENTIFIER == iPhone9,4 ]]; then
+    REFER="iphone9"
+elif [[ $IDENTIFIER == iPad7,1 ]]; then
+    REFER="j120"
+    REFER2="j120"
+elif [[ $IDENTIFIER == iPad7,2 ]]; then
+    REFER="j121"
+    REFER2="j121"
+elif [[ $IDENTIFIER == iPad7,3 ]]; then
+    REFER="j207"
+    REFER2="j207"
+elif [[ $IDENTIFIER == iPad7,4 ]]; then
+    REFER="j208"
+    REFER2="j208"
+elif [[ $IDENTIFIER == iPad7,5 ]]; then
+    REFER="j71b"
+    REFER2="j71b"
+elif [[ $IDENTIFIER == iPad7,6 ]]; then
+    REFER="j72b"
+    REFER2="j72b"
+elif [[ $IDENTIFIER == iPad7,11 ]]; then
+    REFER="j171"
+    REFER2="j171"
+elif [[ $IDENTIFIER == iPad7,12 ]]; then
+    REFER="j172"
+    REFER2="j172"
 else
     echo "Unsupported device"
     exit 1
@@ -1238,12 +1264,68 @@ elif [[ $IDENTIFIER == iPad5,4 ]]; then
     BOARDID="j82ap"
     BOARDID2="j82"
     NAME="iPad Air 2 (Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone9,1 ]]; then
+    BOARDID="d10ap"
+    BOARDID2="d10"
+    REFER2="$BOARDID2"
+    NAME="iPhone 7 (Global, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone9,3 ]]; then
+    BOARDID="d101ap"
+    BOARDID2="d10"
+    REFER2="$BOARDID2"
+    NAME="iPhone 7 (GSM, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone9,2 ]]; then
+    BOARDID="d11ap"
+    BOARDID2="d11"
+    REFER2="$BOARDID2"
+    NAME="iPhone 7 Plus (Global, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone9,4 ]]; then
+    BOARDID="d111ap"
+    BOARDID2="d11"
+    REFER2="$BOARDID2"
+    NAME="iPhone 7 Plus (GSM, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,1 ]]; then
+    BOARDID="j120ap"
+    BOARDID2="j120"
+    NAME="iPad Pro 12.9-inch (2nd generation, Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,2 ]]; then
+    BOARDID="j121ap"
+    BOARDID2="j121"
+    NAME="iPad Pro 12.9-inch (2nd generation, Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,3 ]]; then
+    BOARDID="j207ap"
+    BOARDID2="j207"
+    NAME="iPad Pro 10.5-inch (Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,4 ]]; then
+    BOARDID="j208ap"
+    BOARDID2="j208"
+    NAME="iPad Pro 10.5-inch (Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,5 ]]; then
+    BOARDID="j71bap"
+    BOARDID2="j71b"
+    NAME="iPad (6th generation, Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,6 ]]; then
+    BOARDID="j72bap"
+    BOARDID2="j72b"
+    NAME="iPad (6th generation, Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,11 ]]; then
+    BOARDID="j171ap"
+    BOARDID2="j171"
+    NAME="iPad (7th generation, Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad7,12 ]]; then
+    BOARDID="j172ap"
+    BOARDID2="j172"
+    NAME="iPad (7th generation, Cellular, $BOARDID) - $IDENTIFIER"
 fi
 
-if [[ $IDENTIFIER == iPad5* ]]; then
+if [[ $IDENTIFIER == iPad5* || $IDENTIFIER == iPhone9* ]]; then
     LATEST_VERSION="15.8.8"
 elif [[ $IDENTIFIER == iPhone10* ]]; then
     LATEST_VERSION="16.7.16"
+elif [[ $IDENTIFIER == iPad7,11 || $IDENTIFIER == iPad7,12 ]]; then
+    LATEST_VERSION="18.7.10"
+elif [[ $IDENTIFIER == iPad7* ]]; then
+    LATEST_VERSION="17.7.11"
 else
     LATEST_VERSION="12.5.8"
 fi
@@ -1880,7 +1962,7 @@ if [[ $IDENTIFIER == iPhone10,3 || $IDENTIFIER == iPhone10,6 ]]; then
     exit 1
 fi
 
-if [[ $IDENTIFIER == iPhone10* ]]; then
+if [[ $IDENTIFIER == iPhone10* || $IDENTIFIER == iPhone9* || $IDENTIFIER == iPad7* ]]; then
     dfu_helper_a11
 else
     dfu_helper
@@ -2454,7 +2536,7 @@ if [[ ! -d $bootdir ]]; then
     exit 1
 fi
 
-if [[ $IDENTIFIER == iPhone10* ]]; then
+if [[ $IDENTIFIER == iPhone10* || $IDENTIFIER == iPhone9* || $IDENTIFIER == iPad7* ]]; then
     dfu_helper_a11
 else
     dfu_helper
@@ -2667,7 +2749,7 @@ if [[ $VERSION == 11.* ]] && [[ $IDENTIFIER == iPad5,3 || $IDENTIFIER == iPad5,4
     exit 1
 fi
 
-if [[ $IDENTIFIER == iPhone10* ]]; then
+if [[ $IDENTIFIER == iPhone10* || $IDENTIFIER == iPhone9* || $IDENTIFIER == iPad7* ]]; then
     dfu_helper_a11
 else
     dfu_helper
@@ -3693,7 +3775,23 @@ if [[ $IDENTIFIER == NONE ]]; then
     return
 fi
 
-clear 
+# A10/A10X (iPhone 7, iPad 6/7, iPad Pro 2017) support is a work in progress.
+# Device detection is wired up, but the restore/boot flows and firmware keys
+# are still being implemented and have NOT been validated on hardware.
+if [[ $IDENTIFIER == iPhone9* || $IDENTIFIER == iPad7* ]] && [[ "${a10_warned:-0}" != 1 ]]; then
+    echo "WARNING: A10/A10X support for $NAME is a WORK IN PROGRESS and is UNTESTED."
+    echo "Device detection is in place, but the restore/boot flows and firmware keys"
+    echo "are not finished. A restore may fail partway through."
+    echo "Only continue if you are developing or testing A10 support."
+    read -p "Type YES to continue at your own risk, anything else to go back: " a10_consent
+    if [[ $a10_consent != YES ]]; then
+        main_menu
+        return
+    fi
+    a10_warned=1
+fi
+
+clear
 echo "$INFO_TEXT"
 echo ""
 echo "Options:"

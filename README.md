@@ -2,6 +2,8 @@
 
 A tethered downgrade tool for some A7/A8(X) devices and all A11 devices.
 
+Experimental A10/A10X support (iPhone 7/7 Plus, iPad 6/7, iPad Pro 2017) is in progress and not yet validated.
+
 Supports macOS (10.15+) and Linux
 
 For surrealra1n support, join the [surrealra1n](https://discord.gg/kDXVHhTQs2) Discord Server
