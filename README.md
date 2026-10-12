@@ -1,10 +1,8 @@
 # surrealra1n 
 
-A tethered downgrade tool for some A7/A8(X) devices and all A11 devices.
+A tethered downgrade tool for some A7/A8(X) devices and A10 devices
 
-Supports macOS (10.15+) and Linux
-
-For surrealra1n support, join the [surrealra1n](https://discord.gg/kDXVHhTQs2) Discord Server
+Supports macOS (10.15+) 
 
 # Compatible devices and versions:
 
