@@ -2,7 +2,7 @@
 
 A tethered downgrade tool for some A7/A8(X) devices and all A11 devices.
 
-Experimental A10/A10X support (iPhone 7/7 Plus, iPad 6/7, iPad Pro 2017) is in progress and not yet validated.
+Experimental A9/A9X and A10/A10X support (iPhone 6s/SE/7, iPad 5/6/7, iPad Pro 1st gen/2017) is provided through [turdus merula](https://sep.lol/), a third-party closed-source tool that surrealra1n downloads and runs. This path is experimental and not yet validated.
 
 Supports macOS (10.15+) and Linux
 

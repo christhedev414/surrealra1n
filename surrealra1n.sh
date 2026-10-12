@@ -1092,9 +1092,9 @@ KEY_FILE="keys/$IDENTIFIER.txt"
 
 # BB update determine check
 
-if [[ $IDENTIFIER == iPhone* || $IDENTIFIER == iPad4,2 || $IDENTIFIER == iPad4,3 || $IDENTIFIER == iPad4,5 || $IDENTIFIER == iPad4,6 || $IDENTIFIER == iPad4,8 || $IDENTIFIER == iPad4,9 || $IDENTIFIER == iPad5,2 || $IDENTIFIER == iPad5,4 || $IDENTIFIER == iPad7,4 || $IDENTIFIER == iPad7,6 || $IDENTIFIER == iPad7,12 ]]; then
+if [[ $IDENTIFIER == iPhone* || $IDENTIFIER == iPad4,2 || $IDENTIFIER == iPad4,3 || $IDENTIFIER == iPad4,5 || $IDENTIFIER == iPad4,6 || $IDENTIFIER == iPad4,8 || $IDENTIFIER == iPad4,9 || $IDENTIFIER == iPad5,2 || $IDENTIFIER == iPad5,4 || $IDENTIFIER == iPad7,4 || $IDENTIFIER == iPad7,6 || $IDENTIFIER == iPad7,12 || $IDENTIFIER == iPad6,4 || $IDENTIFIER == iPad6,8 || $IDENTIFIER == iPad6,12 ]]; then
     updatebb_flag="--latest-baseband"
-elif [[ $IDENTIFIER == iPod* || $IDENTIFIER == iPad4,1 || $IDENTIFIER == iPad4,4 || $IDENTIFIER == iPad4,7 || $IDENTIFIER == iPad5,1 || $IDENTIFIER == iPad5,3 || $IDENTIFIER == iPad7,1 || $IDENTIFIER == iPad7,2 || $IDENTIFIER == iPad7,3 || $IDENTIFIER == iPad7,5 || $IDENTIFIER == iPad7,11 ]]; then
+elif [[ $IDENTIFIER == iPod* || $IDENTIFIER == iPad4,1 || $IDENTIFIER == iPad4,4 || $IDENTIFIER == iPad4,7 || $IDENTIFIER == iPad5,1 || $IDENTIFIER == iPad5,3 || $IDENTIFIER == iPad7,1 || $IDENTIFIER == iPad7,2 || $IDENTIFIER == iPad7,3 || $IDENTIFIER == iPad7,5 || $IDENTIFIER == iPad7,11 || $IDENTIFIER == iPad6,3 || $IDENTIFIER == iPad6,7 || $IDENTIFIER == iPad6,11 ]]; then
     updatebb_flag="--no-baseband"
 fi
 
@@ -1133,6 +1133,25 @@ elif [[ $IDENTIFIER == iPad5,1 || $IDENTIFIER == iPad5,2 ]]; then
 elif [[ $IDENTIFIER == iPad5,3 || $IDENTIFIER == iPad5,4 ]]; then
     REFER="ipad5b"
     REFER2="ipad5b"
+# A9/A9X (iPhone 6s/SE, iPad 5, iPad Pro 1st gen) are handled via turdus merula.
+# The REFER/REFER2/BOARDID values below are nominal (turdus reads the IPSW itself);
+# they only exist so the native variable building below does not hit unbound vars.
+elif [[ $IDENTIFIER == iPhone8,1 || $IDENTIFIER == iPhone8,2 ]]; then
+    REFER="iphone8"
+elif [[ $IDENTIFIER == iPhone8,4 ]]; then
+    REFER="iphone8b"
+elif [[ $IDENTIFIER == iPad6,3 || $IDENTIFIER == iPad6,4 ]]; then
+    REFER="ipad6b"
+    REFER2="ipad6b"
+elif [[ $IDENTIFIER == iPad6,7 || $IDENTIFIER == iPad6,8 ]]; then
+    REFER="ipad6d"
+    REFER2="ipad6d"
+elif [[ $IDENTIFIER == iPad6,11 ]]; then
+    REFER="j71s"
+    REFER2="j71s"
+elif [[ $IDENTIFIER == iPad6,12 ]]; then
+    REFER="j72s"
+    REFER2="j72s"
 elif [[ $IDENTIFIER == iPhone9,1 || $IDENTIFIER == iPhone9,2 || $IDENTIFIER == iPhone9,3 || $IDENTIFIER == iPhone9,4 ]]; then
     REFER="iphone9"
 elif [[ $IDENTIFIER == iPad7,1 ]]; then
@@ -1264,6 +1283,45 @@ elif [[ $IDENTIFIER == iPad5,4 ]]; then
     BOARDID="j82ap"
     BOARDID2="j82"
     NAME="iPad Air 2 (Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone8,1 ]]; then
+    BOARDID="n71ap"
+    BOARDID2="n71"
+    REFER2="$BOARDID2"
+    NAME="iPhone 6s ($BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone8,2 ]]; then
+    BOARDID="n66ap"
+    BOARDID2="n66"
+    REFER2="$BOARDID2"
+    NAME="iPhone 6s Plus ($BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPhone8,4 ]]; then
+    BOARDID="n69ap"
+    BOARDID2="n69"
+    REFER2="$BOARDID2"
+    NAME="iPhone SE (1st generation, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad6,3 ]]; then
+    BOARDID="j127ap"
+    BOARDID2="j127"
+    NAME="iPad Pro 9.7-inch (Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad6,4 ]]; then
+    BOARDID="j128ap"
+    BOARDID2="j128"
+    NAME="iPad Pro 9.7-inch (Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad6,7 ]]; then
+    BOARDID="j98aap"
+    BOARDID2="j98a"
+    NAME="iPad Pro 12.9-inch (1st generation, Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad6,8 ]]; then
+    BOARDID="j99aap"
+    BOARDID2="j99a"
+    NAME="iPad Pro 12.9-inch (1st generation, Cellular, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad6,11 ]]; then
+    BOARDID="j71sap"
+    BOARDID2="j71s"
+    NAME="iPad (5th generation, Wi-Fi, $BOARDID) - $IDENTIFIER"
+elif [[ $IDENTIFIER == iPad6,12 ]]; then
+    BOARDID="j72sap"
+    BOARDID2="j72s"
+    NAME="iPad (5th generation, Cellular, $BOARDID) - $IDENTIFIER"
 elif [[ $IDENTIFIER == iPhone9,1 ]]; then
     BOARDID="d10ap"
     BOARDID2="d10"
@@ -1318,9 +1376,9 @@ elif [[ $IDENTIFIER == iPad7,12 ]]; then
     NAME="iPad (7th generation, Cellular, $BOARDID) - $IDENTIFIER"
 fi
 
-if [[ $IDENTIFIER == iPad5* || $IDENTIFIER == iPhone9* ]]; then
+if [[ $IDENTIFIER == iPad5* || $IDENTIFIER == iPhone9* || $IDENTIFIER == iPhone8* ]]; then
     LATEST_VERSION="15.8.8"
-elif [[ $IDENTIFIER == iPhone10* ]]; then
+elif [[ $IDENTIFIER == iPhone10* || $IDENTIFIER == iPad6* ]]; then
     LATEST_VERSION="16.7.16"
 elif [[ $IDENTIFIER == iPad7,11 || $IDENTIFIER == iPad7,12 ]]; then
     LATEST_VERSION="18.7.10"
@@ -3759,6 +3817,149 @@ fi
 
 }
 
+turdus_init(){
+
+# Download the kurouta_dori package (contains litera1n + turdus_merula) from
+# sep.lol, pinned to v1.0.2 with a sha1 check. turdus merula is a third-party,
+# closed-source tool; surrealra1n fetches and runs it, it does not bundle it.
+mkdir -p kuroutadori
+local kd_url kd_sha1 kd_dir dl_sha1
+if [[ $dist == 3 || $dist == 4 ]]; then
+    kd_url="https://sep.lol/files/legacypreviews/v1.0.2/a3ad4e6e525393239b3ac4ad58499f25a336b03b97cba6fba4f3a273c8505653548f2c7ad37fc18b1e69e0fddb5b73a3/kurouta_dori_v1.0.2_75aab959_legacymacosx.tar.gz"
+    kd_sha1="61d3d964d194fd9a2084045c3cd95dc3e7920015"
+    kd_dir="kuroutadori/macos"
+elif [[ "$ARCH" == "arm64" || "$ARCH" == "aarch64" ]]; then
+    kd_url="https://sep.lol/files/legacypreviews/v1.0.2/e04e9d27bcb8339e2e876ad92cc751b1e679b1ce91d2807b13ff1bc820d97349ee5ce5d1c58e61ec062e1a6b7bc2b726/kurouta_dori_v1.0.2_75aab959_linux-arm64.tar.gz"
+    kd_sha1="1dea1e3e5c7ca921ea6f6380ed0261d9c36a0165"
+    kd_dir="kuroutadori/linux-arm64"
+else
+    kd_url="https://sep.lol/files/legacypreviews/v1.0.2/37daa814d98a38640813527be6c82ec1ee0561923b543c2290a0d519e9b2e7f7b73147a26e38d7f8a849fd70e0713125/kurouta_dori_v1.0.2_75aab959_linux-amd64.tar.gz"
+    kd_sha1="6d801a59979c64ff73015a8bfc950518dc043525"
+    kd_dir="kuroutadori/linux-amd64"
+fi
+TURDUS_DIR="$kd_dir/bin"
+if [[ ! -x "$TURDUS_DIR/turdus_merula" ]]; then
+    echo "Downloading turdus merula (kurouta_dori v1.0.2) from sep.lol..."
+    rm -rf "$kd_dir"
+    mkdir -p "$kd_dir"
+    download_with_retry "$kd_url" "kuroutadori/kd.tar.gz" 102400
+    if [[ ! -f "kuroutadori/kd.tar.gz" ]]; then
+        echo "[!] Failed to download turdus merula. Check your connection and https://sep.lol/"
+        exit 1
+    fi
+    if command -v sha1sum &>/dev/null; then
+        dl_sha1=$(sha1sum "kuroutadori/kd.tar.gz" | cut -d' ' -f1)
+    else
+        dl_sha1=$(shasum -a 1 "kuroutadori/kd.tar.gz" | cut -d' ' -f1)
+    fi
+    if [[ "$dl_sha1" != "$kd_sha1" ]]; then
+        echo "[!] turdus merula download failed sha1 verification."
+        echo "    expected: $kd_sha1"
+        echo "    got:      $dl_sha1"
+        echo "    Aborting for safety. sep.lol may have published a newer release;"
+        echo "    update the pinned URL/sha1 in surrealra1n if so."
+        exit 1
+    fi
+    tar -xvf "kuroutadori/kd.tar.gz" -C "$kd_dir"
+    chmod +x "$TURDUS_DIR"/* 2>/dev/null || true
+fi
+if [[ ! -x "$TURDUS_DIR/turdus_merula" ]]; then
+    echo "[!] turdus_merula binary not found after extraction. Aborting."
+    exit 1
+fi
+
+}
+
+restore_turdus(){
+
+if [[ -z "$IPSW_PATH" ]] || [[ ! -f "$IPSW_PATH" ]]; then
+    echo "No target IPSW selected. Aborting."
+    exit 1
+fi
+local turdus_sudo=""
+if [[ $dist == 1 || $dist == 2 || $dist == 5 ]]; then
+    turdus_sudo="sudo"
+fi
+# Put the device in DFU mode; turdus merula pwns it itself using its own litera1n.
+dfu_helper
+turdus_init
+echo "Pwning the device with turdus merula (litera1n)..."
+$turdus_sudo "$TURDUS_DIR/litera1n" -D || true
+PWND=$(./bin/irecovery -q 2>/dev/null | grep "^PWND:" | cut -d ':' -f2 | xargs) || true
+if [[ "$PWND" != "yolo" ]]; then
+    echo "[!] Device was not pwned by turdus merula (PWND: ${PWND:-none})."
+    echo "    Re-enter DFU mode and try again."
+    exit 1
+fi
+local args
+if [[ "${TURDUS_TETHERED:-0}" == 1 ]]; then
+    args=("-o" "-y" "$IPSW_PATH")
+    echo "Starting tethered downgrade with turdus merula..."
+else
+    args=("-w" "--load-shsh" "$SHSH_PATH" "-y" "$IPSW_PATH")
+    echo "Starting untethered downgrade with turdus merula..."
+fi
+echo "Running: turdus_merula ${args[*]}"
+set +e
+$turdus_sudo "$TURDUS_DIR/turdus_merula" "${args[@]}"
+turdus_exit=$?
+set -e
+echo ""
+if [[ $turdus_exit -eq 0 ]]; then
+    echo "turdus merula completed. Read the output above for any errors."
+    if [[ "${TURDUS_TETHERED:-0}" == 1 ]]; then
+        echo "This was a tethered downgrade: the device needs turdus merula to boot each time."
+    fi
+else
+    echo "turdus merula exited with code $turdus_exit. Read the output above for details."
+fi
+exit 0
+
+}
+
+turdus_opts(){
+
+clear
+echo "$INFO_TEXT"
+echo ""
+echo "=== turdus merula downgrade (A9/A9X/A10/A10X) ==="
+echo ""
+echo "turdus merula is a third-party, closed-source tool by the turdus team"
+echo "(https://sep.lol/). surrealra1n downloads it from sep.lol and runs it;"
+echo "it is not bundled with surrealra1n."
+echo "This path is EXPERIMENTAL and has NOT been validated within surrealra1n."
+echo "A failed or misused restore can brick a device. Use at your own risk."
+echo ""
+echo "Device: $NAME"
+echo ""
+echo "Options:"
+echo ""
+echo "1. Untethered downgrade (requires matching SHSH blobs)"
+echo "2. Tethered downgrade (no blobs; re-run to boot each time)"
+echo "3. Back"
+read -p "Please input an option (1-3): " turdus_choice
+if [[ $turdus_choice == 1 ]]; then
+    TURDUS_TETHERED=0
+    ipsw_selector target
+    SHSH_PATH=$(pick_file "Select an SHSH2 blob matching iOS $VERSION for this device")
+    if [[ -z "$SHSH_PATH" ]] || [[ ! -f "$SHSH_PATH" ]]; then
+        echo "No valid SHSH blob selected. Aborting."
+        exit 1
+    fi
+    restore_turdus
+elif [[ $turdus_choice == 2 ]]; then
+    TURDUS_TETHERED=1
+    ipsw_selector target
+    restore_turdus
+elif [[ $turdus_choice == 3 ]]; then
+    main_menu
+else
+    echo "Invalid option. Exiting."
+    exit 1
+fi
+
+}
+
 restore_utils(){
 
 #if [[ $outdated == 1 ]]; then
@@ -3775,20 +3976,11 @@ if [[ $IDENTIFIER == NONE ]]; then
     return
 fi
 
-# A10/A10X (iPhone 7, iPad 6/7, iPad Pro 2017) support is a work in progress.
-# Device detection is wired up, but the restore/boot flows and firmware keys
-# are still being implemented and have NOT been validated on hardware.
-if [[ $IDENTIFIER == iPhone9* || $IDENTIFIER == iPad7* ]] && [[ "${a10_warned:-0}" != 1 ]]; then
-    echo "WARNING: A10/A10X support for $NAME is a WORK IN PROGRESS and is UNTESTED."
-    echo "Device detection is in place, but the restore/boot flows and firmware keys"
-    echo "are not finished. A restore may fail partway through."
-    echo "Only continue if you are developing or testing A10 support."
-    read -p "Type YES to continue at your own risk, anything else to go back: " a10_consent
-    if [[ $a10_consent != YES ]]; then
-        main_menu
-        return
-    fi
-    a10_warned=1
+# A9/A9X and A10/A10X (iPhone 6s/SE/7, iPad 5/6/7, iPad Pro 1st gen/2017) are
+# handled through turdus merula rather than surrealra1n's native flows.
+if [[ $IDENTIFIER == iPhone8* || $IDENTIFIER == iPhone9* || $IDENTIFIER == iPad6* || $IDENTIFIER == iPad7* ]]; then
+    turdus_opts
+    return
 fi
 
 clear
